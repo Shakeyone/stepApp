@@ -1,15 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+@extends('layouts.layout')
+
+@section('content')
+
     <h1>Steps</h1>
-    @foreach ($steps as $step)
-     <li>Added on: {{ date('M d Y', strtotime($step->created_at)) }} - Steps: {{$step->stepTotal}}</li>   
-    @endforeach
-</body>
-</html>
+    <ul>
+        @foreach ($steps as $step)
+            <li>
+                <a href="/steps/{{$step->id}}">
+                    Added on: {{ date('M d Y', strtotime($step->created_at)) }} - Steps: {{$step->stepTotal}}
+                </a>
+            </li>   
+        @endforeach
+    </ul>
+
+@endsection
