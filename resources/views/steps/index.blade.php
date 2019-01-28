@@ -1,16 +1,17 @@
 @extends('layouts.layout')
 
+@section('title', 'Step Counts')
+
+@section('header', 'Step Counts')
+
 @section('content')
 
-    <h1>Steps</h1>
-    <ul>
+    <div class="list-group">
         @foreach ($steps as $step)
-            <li>
-                <a href="/steps/{{$step->id}}">
-                    Added on: {{ date('M d Y', strtotime($step->created_at)) }} - Steps: {{$step->stepTotal}}
-                </a>
-            </li>   
+            <a class="list-group-item list-group-item-action" href="/steps/{{$step->id}}">
+                Added on: {{ date('M d Y', strtotime($step->created_at)) }} - Steps: {{$step->stepTotal}}
+            </a> 
         @endforeach
-    </ul>
+    </div>
 
 @endsection
