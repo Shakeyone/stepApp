@@ -37,12 +37,7 @@ class StepsController extends Controller
      */
     public function store(Request $request)
     {
-        $steps = new Step();
-
-        $steps->stepTotal = request('stepTotal');
-        $steps->user_id = request('user_id');
-
-        $steps->save();
+        Step::create(request(['stepTotal','user_id']));
 
         return redirect('/steps');
     }
@@ -53,10 +48,9 @@ class StepsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Step $step)
     {
-        $steps = Step::findOrFail($id);
-        return view('steps.show', compact('steps'));
+        return view('steps.show', compact('step'));
     }
 
     /**
@@ -65,10 +59,9 @@ class StepsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Step $step)
     {
-        $steps = Step::findOrFail($id);
-        return view('steps.edit', compact('steps'));
+        return view('steps.edit', compact('step'));
     }
 
     /**
@@ -78,16 +71,11 @@ class StepsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Step $step)
     {
-        $step = Step::findOrFail($id);
-
-        $step->stepTotal = request('stepTotal');
-
-        $step->save();
+        $step->update(request(['stepTotal']));
 
         return redirect('/steps');
-
     }
 
     /**
@@ -96,9 +84,9 @@ class StepsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Step $step)
     {
-        Step::findOrFail($id)->delete();
+        $step->delete();
 
         return redirect('/steps');
     }

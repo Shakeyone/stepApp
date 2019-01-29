@@ -6,23 +6,23 @@
 
 @section('content')
 
-    <form action="/steps/{{$steps->id}}" method="post" id="form1">
+    <form action="/steps/{{$step->id}}" method="post" id="form1">
     
         @csrf
         @method('PATCH')
 
         <div class="input-group mb-3">
-            <input type="number" name="stepTotal" id="stepTotal" class="form-control" value="{{ $steps->stepTotal }}">
+            <input type="number" name="stepTotal" id="stepTotal" class="form-control" value="{{ $step->stepTotal }}">
         </div>
         
     </form>
     
-    <form action="/steps/{{$steps->id}}" method="post" id="form2">
+    <form action="/steps/{{$step->id}}" method="post" id="form2">
     
         @csrf
         @method('DELETE')
 
-        <input type="hidden" name="id" value="{{$steps->id}}">
+        <input type="hidden" name="id" value="{{$step->id}}">
 
     </form>
 

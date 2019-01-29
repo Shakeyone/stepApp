@@ -3,17 +3,17 @@
 @section('title', 'Step Entry')
 
 @section('header')
-    Step entry for {{ date('M d Y', strtotime($steps->created_at)) }}
+    Step entry for {{ date('M d Y', strtotime($step->created_at)) }}
 @endsection
 
 @section('content')
 
     <p>
-        Steps: {{$steps->stepTotal}}
+        Steps: {{$step->stepTotal}}
     </p>
 
     <p>
-        <a href="/steps/{{$steps->id}}/edit" class="btn btn-warning">Edit</a>
+        <a href="/steps/{{$step->id}}/edit" class="btn btn-warning">Edit</a>
     </p>
 
 @endsection
