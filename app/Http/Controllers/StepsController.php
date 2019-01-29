@@ -37,7 +37,10 @@ class StepsController extends Controller
      */
     public function store(Request $request)
     {
-        Step::create(request(['stepTotal','user_id']));
+        Step::create(request()->validate([
+            'stepTotal' => ['required', 'gt:100'],
+            'user_id' => 'required'
+        ]));
 
         return redirect('/steps');
     }
