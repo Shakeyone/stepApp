@@ -22,7 +22,7 @@ $factory->define(App\User::class, function (Faker $faker) {
         'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
         'remember_token' => str_random(10),
         'sex' => $gender,
-        'dob' => $faker->date($format = 'Y-m-d', $max = 'now'),
+        'dob' => $faker->date($format = 'Y-m-d', $max = '-20 years'),
         'city' => $faker->country,
         'st' => $faker->stateAbbr,
     ];
