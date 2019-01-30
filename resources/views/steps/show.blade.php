@@ -3,7 +3,7 @@
 @section('title', 'Step Entry')
 
 @section('header')
-    Step entry for {{ date('M d Y', strtotime($step->created_at)) }}
+    Step entry for {{ date('M d Y', strtotime($step->stepTotalDate)) }}
 @endsection
 
 @section('content')

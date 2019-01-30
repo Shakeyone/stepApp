@@ -12,9 +12,14 @@
         
         <div class="input-group mb-3">
             <input type="number" name="stepTotal" id="stepTotal" placeholder="Total Steps" 
-                class="form-control {{$errors->has('stepTotal') ? 'border-danger' : ''}}""
+                class="form-control {{$errors->has('stepTotal') ? 'border-danger' : ''}}"
                 @if (old('stepTotal')>0) value="{{old('stepTotal')}}"@endif>
             <input type="hidden" name="user_id" value="1">
+        </div>
+
+        <div class="input-group mb-3">
+            <input type="date" name="stepTotalDate" id="stepTotalDate"
+            class="form-control">
         </div>
 
         <div class="input-group mb-3">

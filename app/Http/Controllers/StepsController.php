@@ -14,7 +14,7 @@ class StepsController extends Controller
      */
     public function index()
     {
-        $steps = Step::all();
+        $steps = Step::all()->sortByDesc('stepTotalDate');
 
         return view('steps.index',compact('steps'));
     }
@@ -39,6 +39,7 @@ class StepsController extends Controller
     {
         Step::create(request()->validate([
             'stepTotal' => ['required', 'gt:100'],
+            'stepTotalDate' => ['required', 'unique:steps,stepTotalDate'],
             'user_id' => 'required'
         ]));
 

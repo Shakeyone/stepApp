@@ -17,7 +17,9 @@ class CreateStepsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('stepTotal');
+            $table->date('stepTotalDate');
             $table->timestamps();
+            $table->unique(['user_id', 'stepTotalDate']);
         });
     }
 
