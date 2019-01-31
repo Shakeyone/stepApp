@@ -6,31 +6,35 @@
 
 @section('content')
 
-    <form action="/steps/{{$step->id}}" method="post" id="form1">
-    
-        @csrf
-        @method('PATCH')
+    <div class="col-sm-6 offset-sm-3">
 
-        <div class="input-group mb-3">
-            <input type="number" name="stepTotal" id="stepTotal" class="form-control" value="{{ $step->stepTotal }}">
-        </div>
+        <form action="/steps/{{$step->id}}" method="post" id="form1">
         
-    </form>
+            @csrf
+            @method('PATCH')
     
-    <form action="/steps/{{$step->id}}" method="post" id="form2">
+            <div class="input-group mb-3">
+                <input type="number" name="stepTotal" id="stepTotal" class="form-control" value="{{ $step->stepTotal }}">
+            </div>
+            
+        </form>
+        
+        <form action="/steps/{{$step->id}}" method="post" id="form2">
+        
+            @csrf
+            @method('DELETE')
     
-        @csrf
-        @method('DELETE')
+            <input type="hidden" name="id" value="{{$step->id}}">
+    
+        </form>
+    
+        <form>
+            <input value="Update Steps" type="button" class="btn btn-warning"
+                onclick="document.getElementById('form1').submit();"/>
+            <input value="Delete Steps Entry" type="button" class="btn btn-danger ml-3"
+                onclick="document.getElementById('form2').submit();"/>
+        </form>
 
-        <input type="hidden" name="id" value="{{$step->id}}">
-
-    </form>
-
-    <form>
-        <input value="Update Steps" type="button" class="btn btn-warning"
-            onclick="document.getElementById('form1').submit();"/>
-        <input value="Delete Steps Entry" type="button" class="btn btn-danger ml-3"
-            onclick="document.getElementById('form2').submit();"/>
-    </form>
+    </div>
 
 @endsection

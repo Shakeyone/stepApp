@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Step;
+use App\User;
 
 class StepsController extends Controller
 {
@@ -14,9 +15,13 @@ class StepsController extends Controller
      */
     public function index()
     {
-        $steps = Step::all()->sortByDesc('stepTotalDate');
+        // $steps = Step::all()->sortByDesc('stepTotalDate');
 
-        return view('steps.index',compact('steps'));
+        // return view('steps.index',compact('steps'));
+
+        $users = User::all();
+
+        return view('steps.index', compact('users'));
     }
 
     /**
@@ -26,6 +31,11 @@ class StepsController extends Controller
      */
     public function create()
     {
+        if(!\Auth::check())
+        {
+            $danger = "You must be logged in to enter a step total.";
+            return \Redirect::action('Auth\LoginController@showLoginForm')->withErrors($danger);
+        }
         return view('steps.create');
     }
 
@@ -39,7 +49,8 @@ class StepsController extends Controller
     {
         Step::create(request()->validate([
             'stepTotal' => ['required', 'gt:100'],
-            'stepTotalDate' => ['required', 'unique:steps,stepTotalDate'],
+            // I can't understand the unique rule but it works correctly :(
+            'stepTotalDate' => ['required', 'unique:steps,stepTotalDate,NULL,id,user_id,'.\Auth::id()],
             'user_id' => 'required'
         ]));
 
