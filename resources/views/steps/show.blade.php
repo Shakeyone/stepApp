@@ -16,7 +16,10 @@
             <div class="card-body">
                 <h5 class="card-title">User: {{$step->user->name}}</h5>
                 <p class="card-text">Steps: {{$step->stepTotal}}</p>
-                <a href="/steps/{{$step->id}}/edit" class="btn btn-warning">Edit</a>
+                {{-- Conditional to only show the edit button for the user the record is for. --}}
+                {{-- @if ($step->user_id == Auth::id()) --}}
+                    <a href="/steps/{{$step->id}}/edit" class="btn btn-warning">Edit</a>                    
+                {{-- @endif --}}
             </div>
             <div class="card-footer text-muted">
                 Last Updated: {{ date_diff(new Datetime('now'), $step->updated_at)->format('%d days ago')}}

@@ -76,6 +76,12 @@ class StepsController extends Controller
      */
     public function edit(Step $step)
     {
+        // redirect if trying to edit a record that is not yours.
+        if ($step->user_id != \Auth::id()) {
+            $danger = "You can only edit your own step totals";
+            return redirect('/steps/')->withErrors($danger);
+        }
+        // Otherwise show the edit form.
         return view('steps.edit', compact('step'));
     }
 
