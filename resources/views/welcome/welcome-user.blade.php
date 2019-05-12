@@ -20,17 +20,6 @@
     </select>
 </div>
 <canvas id="myChart" class="col-11"></canvas>
-<?php 
-// $currentMY = date('F Y');
-// echo 'test strtotime: ' . date('W',strtotime('first day of '.$currentMY));
-$firstWeekMonth = date('W',strtotime('first day of ' . date('F Y')));
-echo 'First Week number of month: ' . $firstWeekMonth;
-echo '<br>Current Week number: ' . date('W');
-$firstDayofWeek = date('m/d/Y', strtotime(date('Y') . 'W' . $firstWeekMonth));
-$lastDayofWeek = date('m/d/Y', strtotime('+6 day', strtotime(date('Y') . 'W' . $firstWeekMonth)));
-echo '<br>First Day of first week of month: ' . $firstDayofWeek;
-echo '<br>Last Day of first week of month: ' . $lastDayofWeek;
-?>
 @endsection
 
 @section('scripts')
