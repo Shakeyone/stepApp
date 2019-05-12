@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title', 'unnamed')</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <!-- Styles -->
     <style>
         html, body {
@@ -45,10 +45,6 @@
             text-align: center;
         }
 
-        .title {
-            font-size: 84px;
-        }
-
         .links > a {
             color: #636b6f;
             padding: 0 25px;
@@ -59,17 +55,30 @@
             text-transform: uppercase;
         }
 
-        .m-b-md {
-            margin-bottom: 30px;
+        a.dropdown-item.active:before {
+            font-family: "Font Awesome 5 Free";
+            content: '\f105';
+            margin-right: 6px;
+            font-weight: 900;
+        }
+
+        .dropdown-item.active, .dropdown-item:active {
+            background-color:#304376;
+        }
+
+        .navbar li.active i {
+            color:#304376;
+        }
+
+        .navbar i {
+            padding-right: 5px;
         }
     </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
         <div class="container">
-            <a class="navbar-brand" href="{{ url('/') }}">
-                {{ config('app.name', 'Laravel') }}
-            </a>
+            <a class="navbar-brand" href="{{ url('/') }}">{{ config('app.name', 'Laravel') }}</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -77,14 +86,22 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item {{ Request::is('steps') ? 'active' : '' }}">
-                        <a class="nav-link" href="/steps">Step Entries<span class="sr-only">(current)</span></a>
+                    <li class="nav-item dropdown {{ Request::is('steps*') ? 'active' : '' }}">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-shoe-prints"></i>Step Data
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item {{ Request::is('steps') ? 'active' : '' }}" href="/steps">Step Entries</a>
+                            <a class="dropdown-item {{ Request::is('steps/user/*') ? 'active' : '' }}" href="#">My Step Entries</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item {{ Request::is('steps/create') ? 'active' : '' }}" href="/steps/create">Add Step Entry</a>
+                        </div>
                     </li>
-                    <li class="nav-item {{ Request::is('steps/create') ? 'active' : '' }}">
-                        <a class="nav-link" href="/steps/create">Add Step Entry</a>
+                    <li class="nav-item {{ Request::path() == 'Competitions' ? 'active' : '' }}">
+                        <a class="nav-link" href="#"><i class="fas fa-heartbeat"></i>Competitions</a>
                     </li>
-                    <li class="nav-item {{ Request::path() == 'pricing' ? 'active' : '' }}">
-                        <a class="nav-link" href="#">Pricing</a>
+                    <li class="nav-item {{ Request::path() == 'Workouts' ? 'active' : '' }}">
+                        <a class="nav-link" href="#"><i class="fas fa-dumbbell"></i>Workouts</a>
                     </li>
                 </ul>
 
@@ -136,12 +153,13 @@
             </div>
         @endif
 
-        <h1 class="m-5 text-center">@yield('header', 'Header is unset')</h1>
+        <h1 class="m-2 text-center">@yield('header', 'Header is unset')</h1>
         @yield('content')
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    @yield('scripts')
 </body>
 </html>
