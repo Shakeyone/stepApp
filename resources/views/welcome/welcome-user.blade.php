@@ -25,6 +25,7 @@
     </select>
 </div>
 <canvas id="myChart" class="col-11"></canvas>
+<div id="noResults" class="mt-5"><p class="text-center"></p></div>
 @endsection
 
 @section('scripts')
@@ -42,10 +43,10 @@
             console.log( data );
             if(data.length == 0){
                 ctx.css('display','none');
-                ctx.after('<div id="noResults" class="mt-5"><p class="text-center">There are no results to show</p></div>')
+                $('#noResults p').html('There are no results to show');
             }else{
-                    $('#noResults').remove();
-                    ctx.css('display','block');
+                $('#noResults p').html();
+                ctx.css('display','block');
                 for (var i = 0; i < data.length; i++){
                     dataLabels.push(moment(data[i].stepTotalDate).format('MMMM D YYYY'));
                     stepData.push(data[i].stepTotal);
@@ -107,9 +108,9 @@
                 console.log(data.length);         
                 if(data.length == 0){
                     ctx.css('display','none');
-                    ctx.after('<div id="noResults" class="mt-5"><p class="text-center">There are no results to show</p></div>')
+                    $('#noResults p').html('There are no results to show');
                 }else{
-                    $('#noResults').remove();
+                    $('#noResults p').html();
                     ctx.css('display','block');
                     for (var i = 0; i < data.length; i++){
                         dataLabels.push(moment(data[i].stepTotalDate).format('MMMM D YYYY'));
