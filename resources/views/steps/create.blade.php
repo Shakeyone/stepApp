@@ -21,7 +21,7 @@
     
             <div class="input-group mb-3">
                 <input type="date" name="stepTotalDate" id="stepTotalDate"
-                class="form-control">
+                class="form-control" @if (old('stepTotalDate')>0) value="{{old('stepTotalDate')}}"@endif>
             </div>
     
             <div class="input-group mb-3">
