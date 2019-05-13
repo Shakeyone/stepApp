@@ -4,7 +4,7 @@
     @section('header', 'Welcome to ' . config('app.name', 'Laravel'))
 @else
     @section('header') 
-        Welcome back {{ Auth::user()->name }} <br>to  {{config('app.name', 'Laravel')}}
+        Welcome {{ Auth::user()->name }} <br>to  {{config('app.name', 'Laravel')}}
     @endsection    
 @endguest
 
