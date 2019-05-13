@@ -14,7 +14,7 @@ class WelcomeController extends Controller
     }
 
     public function welcomeData(){
-
+        date_default_timezone_set("America/Chicago");
         if(!empty($_GET['week']) && self::validateWeek($_GET['week'])){
             $from = date('Y-m-d', strtotime(date('Y').'W'.$_GET['week']));
             $to = date('Y-m-d', strtotime('+6 day',strtotime(date('Y').'W'.$_GET['week'])));

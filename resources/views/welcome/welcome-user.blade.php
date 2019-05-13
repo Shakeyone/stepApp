@@ -5,6 +5,7 @@
 <div class="col-6 offset-3">
     <select id="weekSelector" class="form-control mb-4">
         <?php
+            date_default_timezone_set("America/Chicago");
             $currentWeekNumber = date('W');
             $firstWeekMonth = date('W',strtotime('first day of ' . date('F Y')));
             for($i = $currentWeekNumber; $i >= $firstWeekMonth; $i--){
@@ -12,8 +13,12 @@
                     echo '<option value="0">Current Week</option>';
                 }elseif($i == $firstWeekMonth){
                     echo '<option value="' . $i . '">First Week of Month</option>';
-                }else{
-                    echo '<option value="' . $i . '">'. ( $firstWeekMonth -$i ) + 1 .' Week of Month</option>';
+                }elseif ( $firstWeekMonth - $i == -1){
+                    echo '<option value="' . $i . '">Last Week</option>';
+                }elseif ( $firstWeekMonth - $i == -2){
+                    echo '<option value="' . $i . '">2 Weeks ago</option>';
+                }elseif ( $firstWeekMonth - $i == -3){
+                    echo '<option value="' . $i . '">3 Weeks ago</option>';
                 }
             }
         ?>
