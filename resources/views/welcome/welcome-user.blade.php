@@ -45,7 +45,7 @@
                 ctx.css('display','none');
                 $('#noResults p').html('There are no results to show');
             }else{
-                $('#noResults p').html();
+                $('#noResults p').html('');
                 ctx.css('display','block');
                 for (var i = 0; i < data.length; i++){
                     dataLabels.push(moment(data[i].stepTotalDate).format('MMMM D YYYY'));
@@ -110,7 +110,7 @@
                     ctx.css('display','none');
                     $('#noResults p').html('There are no results to show');
                 }else{
-                    $('#noResults p').html();
+                    $('#noResults p').html('');
                     ctx.css('display','block');
                     for (var i = 0; i < data.length; i++){
                         dataLabels.push(moment(data[i].stepTotalDate).format('MMMM D YYYY'));
