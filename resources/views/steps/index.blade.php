@@ -34,32 +34,17 @@ $by = isset($_GET['by']) ? $_GET['by'] : '';
             <div class="col-6">
                 <h1 class="text-center">{{$user->name}}</h1>
                 <div class="list-group mb-5">
-                    {{-- In need of some DRYing --}}
-                    @if ($order == "asc" && $by == "date")
-                        @foreach ($user->steps->sortBy('stepTotalDate') as $step)
-                            <a class="list-group-item list-group-item-action" href="/steps/{{$step->id}}">
-                                Date: {{ date('M d Y', strtotime($step->stepTotalDate)) }} - Steps: {{$step->stepTotal}}
-                            </a> 
-                        @endforeach
-                    @elseif ($order == "asc" && $by == "steps")
-                        @foreach ($user->steps->sortBy('stepTotal') as $step)
-                            <a class="list-group-item list-group-item-action" href="/steps/{{$step->id}}">
-                                Date: {{ date('M d Y', strtotime($step->stepTotalDate)) }} - Steps: {{$step->stepTotal}}
-                            </a> 
-                        @endforeach
-                    @elseif ($order == "desc" && $by == "steps")
-                        @foreach ($user->steps->sortByDesc('stepTotal') as $step)
-                            <a class="list-group-item list-group-item-action" href="/steps/{{$step->id}}">
-                                Date: {{ date('M d Y', strtotime($step->stepTotalDate)) }} - Steps: {{$step->stepTotal}}
-                            </a> 
-                        @endforeach
-                    @else
-                        @foreach ($user->steps->sortByDesc('stepTotalDate') as $step)
-                            <a class="list-group-item list-group-item-action" href="/steps/{{$step->id}}">
-                                Date: {{ date('M d Y', strtotime($step->stepTotalDate)) }} - Steps: {{$step->stepTotal}}
-                            </a> 
-                        @endforeach
-                    @endif
+                    <?php
+                        if ($order == "asc" && $by == "date") $steps = $user->steps->sortBy('stepTotalDate'); 
+                        elseif ($order == "asc" && $by == "steps") $steps = $user->steps->sortBy('stepTotal'); 
+                        elseif ($order == "desc" && $by == "steps") $steps = $user->steps->sortByDesc('stepTotal');
+                        else $steps = $user->steps->sortByDesc('stepTotalDate'); 
+                    ?>
+                    @foreach ($steps as $step)
+                        <a class="list-group-item list-group-item-action" href="/steps/{{$step->id}}">
+                            Date: {{ date('M d Y', strtotime($step->stepTotalDate)) }} - Steps: {{$step->stepTotal}}
+                        </a> 
+                    @endforeach
                 </div>
             </div>
         @endforeach
