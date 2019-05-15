@@ -73,10 +73,14 @@
         .navbar i {
             padding-right: 5px;
         }
+        .navbar {
+            background-color: white;
+            box-shadow: 0 2px 2px -2px rgba(0,0,0,.2);
+        }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+    <nav class="navbar sticky-top navbar-expand-md navbar-light navbar-laravel">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">{{ config('app.name', 'Laravel') }}</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
