@@ -11,73 +11,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <!-- Styles -->
-    <style>
-        html, body {
-            background-color: #fff;
-            color: #636b6f;
-            font-family: 'Nunito', sans-serif;
-            font-weight: 200;
-            height: 100vh;
-            margin: 0;
-        }
-
-        .full-height {
-            height: 100vh;
-        }
-
-        .flex-center {
-            align-items: center;
-            display: flex;
-            justify-content: center;
-        }
-
-        .position-ref {
-            position: relative;
-        }
-
-        .top-right {
-            position: absolute;
-            right: 10px;
-            top: 18px;
-        }
-
-        .content {
-            text-align: center;
-        }
-
-        .links > a {
-            color: #636b6f;
-            padding: 0 25px;
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: .1rem;
-            text-decoration: none;
-            text-transform: uppercase;
-        }
-
-        a.dropdown-item.active:before {
-            font-family: "Font Awesome 5 Free";
-            content: '\f105';
-            margin-right: 6px;
-            font-weight: 900;
-        }
-
-        .dropdown-item.active, .dropdown-item:active {
-            background-color:#304376;
-        }
-
-        .navbar li.active i {
-            color:#304376;
-        }
-
-        .navbar i {
-            padding-right: 5px;
-        }
-        .navbar {
-            background-color: white;
-            box-shadow: 0 2px 2px -2px rgba(0,0,0,.2);
-        }
-    </style>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
     <nav class="navbar sticky-top navbar-expand-md navbar-light navbar-laravel">
@@ -147,7 +81,7 @@
 
     <div class="container">
         @if($errors->any())
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li> 
                 @endforeach
@@ -159,7 +93,12 @@
 
         <h1 class="m-2 text-center">@yield('header', 'Header is unset')</h1>
         @yield('content')
+
     </div>
+    <footer class="footer pt-3">
+        <p>&copy;{{ date('Y')}} Chandler Ryan <a href="https://chandler-ryan.com" target="_blank">chandler-ryan.com</a><br>
+            All stock photos courtesy of <a href="https://www.pexels.com">Pexels</a></p>
+    </footer>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

@@ -1,7 +1,10 @@
 @extends('layouts.layout')
 
 @guest
-    @section('header', 'Welcome to ' . config('app.name', 'Laravel'))
+    @section('header')
+    Welcome to {{config('app.name', 'Laravel')}}<br>
+    <small>Where every battle is a victory!</small>
+    @endsection
 @else
     @section('header') 
         Welcome {{ Auth::user()->name }} <br>to  {{config('app.name', 'Laravel')}}

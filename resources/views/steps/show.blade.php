@@ -9,7 +9,7 @@
 @section('content')
 
     <div class="col-sm-6 offset-sm-3">
-        <div class="card text-center">
+        <div class="card text-center mb-5">
             <div class="card-header">
                 {{ date('M d Y', strtotime($step->stepTotalDate)) }}
             </div>
@@ -18,7 +18,7 @@
                 <p class="card-text">Steps: {{$step->stepTotal}}</p>
                 {{-- Conditional to only show the edit button for the user the record is for. --}}
                 {{-- @if ($step->user_id == Auth::id()) --}}
-                    <a href="/steps/{{$step->id}}/edit" class="btn btn-warning">Edit</a>                    
+                    <a href="/steps/{{$step->id}}/edit" class="btn btn-outline-warning">Edit</a>                    
                 {{-- @endif --}}
             </div>
             <div class="card-footer text-muted">
