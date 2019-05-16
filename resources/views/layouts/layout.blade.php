@@ -11,7 +11,89 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <!-- Styles -->
-    <link rel="stylesheet" type="text/css" href="/css/mystyle.css">
+    <link rel="stylesheet" href="/css/mystyle.css">
+    <style>
+    html, body {
+        background-color: #fff;
+        color: #636b6f;
+        font-family: 'Nunito', sans-serif;
+        font-weight: 200;
+        height: 100vh;
+        margin: 0;
+    }
+
+
+
+    .full-height {
+        height: 100vh;
+    }
+
+    .flex-center {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+    }
+
+    .position-ref {
+        position: relative;
+    }
+
+    .top-right {
+        position: absolute;
+        right: 10px;
+        top: 18px;
+    }
+
+    .content {
+        text-align: center;
+    }
+
+    .links > a {
+        color: #636b6f;
+        padding: 0 25px;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: .1rem;
+        text-decoration: none;
+        text-transform: uppercase;
+    }
+
+    a.dropdown-item.active:before {
+        font-family: "Font Awesome 5 Free";
+        content: '\f105';
+        margin-right: 6px;
+        font-weight: 900;
+    }
+
+    .dropdown-item.active, .dropdown-item:active {
+        background-color:#304376;
+    }
+
+    .navbar li.active i {
+        color:#304376;
+    }
+
+    .navbar i {
+        padding-right: 5px;
+    }
+    .navbar{
+        background-color: white;
+        box-shadow: 0 2px 2px -2px rgba(0,0,0,.2);
+    }
+
+    .carousel-item img.rounded {
+        border-radius: 9rem !important;
+    }
+
+    footer{
+        background-color: white;
+        box-shadow: 0 -1px 1px rgba(0,0,0,.2);
+    }
+
+    .footer p{
+        text-align:center;
+    }
+    </style>
 </head>
 <body>
     <nav class="navbar sticky-top navbar-expand-md navbar-light navbar-laravel">
