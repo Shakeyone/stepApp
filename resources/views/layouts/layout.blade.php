@@ -27,11 +27,10 @@
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item dropdown {{ Request::is('steps*') ? 'active' : '' }}">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-shoe-prints"></i>Step Data
+                            <i class="fas fa-shoe-prints"></i>My Step Data
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item {{ Request::is('steps') ? 'active' : '' }}" href="/steps">Step Entries</a>
-                            <a class="dropdown-item {{ Request::is('steps/user/*') ? 'active' : '' }}" href="#">My Step Entries</a>
+                            <a class="dropdown-item {{ Request::is('steps') ? 'active' : '' }}" href="/steps">List Step Entries</a>                            
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item {{ Request::is('steps/create') ? 'active' : '' }}" href="/steps/create">Add Step Entry</a>
                         </div>
@@ -57,6 +56,17 @@
                             </li>
                         @endif
                     @else
+                    <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                Friends <span class="caret"></span>
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item {{ Request::is('friend') ? 'active' : '' }}" href="/friends">List Friends</a>                            
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item {{ Request::is('friend/create') ? 'active' : '' }}" href="/friends/create">Add Friend</a>
+                            </div>
+                        </li>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }} <span class="caret"></span>

@@ -31,7 +31,7 @@ $by = isset($_GET['by']) ? $_GET['by'] : '';
         </form>
         <div class="row">
         @foreach($users as $user)
-            <div class="col-sm-6">
+            <div class="col-sm-8 offset-2">
                 <h1 class="text-center">{{$user->name}}</h1>
                 <div class="list-group mb-5">
                     <?php
@@ -50,5 +50,4 @@ $by = isset($_GET['by']) ? $_GET['by'] : '';
         @endforeach
         </div>
     </div>
-
 @endsection

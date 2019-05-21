@@ -37,4 +37,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 // Route::delete('/steps/{step}', 'StepsController@destroy');
 
 Route::resource('steps', 'StepsController');
-
+Route::resource('friends', 'FriendsController');

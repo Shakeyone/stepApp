@@ -19,8 +19,15 @@ class StepsController extends Controller
 
         // return view('steps.index',compact('steps'));
 
-        $users = User::all();
+        //$users = User::all();
+        if(!\Auth::check())
+        {
+            $danger = "You must be logged in to see you step entry listing.";
+            return \Redirect::action('Auth\LoginController@showLoginForm')->withErrors($danger);
+        }
 
+        $users = User::where('id', \Auth::id())->get();
+        
         return view('steps.index', compact('users'));
     }
 
