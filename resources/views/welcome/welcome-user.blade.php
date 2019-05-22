@@ -13,11 +13,11 @@
                     echo '<option value="0">Current Week</option>';
                 }elseif($i == $firstWeekMonth){
                     echo '<option value="' . $i . '">First Week of Month</option>';
-                }elseif ( $firstWeekMonth - $i == -1){
+                }elseif ( $currentWeekNumber - $i == 1){
                     echo '<option value="' . $i . '">Last Week</option>';
-                }elseif ( $firstWeekMonth - $i == -2){
+                }elseif ( $currentWeekNumber - $i == 2){
                     echo '<option value="' . $i . '">2 Weeks ago</option>';
-                }elseif ( $firstWeekMonth - $i == -3){
+                }elseif ( $currentWeekNumber - $i == 3){
                     echo '<option value="' . $i . '">3 Weeks ago</option>';
                 }
             }
