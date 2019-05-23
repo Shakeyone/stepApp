@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Friend;
+use App\Friends;
+use App\User;
 use Illuminate\Http\Request;
 
 class FriendsController extends Controller
@@ -20,7 +21,9 @@ class FriendsController extends Controller
             return \Redirect::action('Auth\LoginController@showLoginForm')->withErrors($danger);
         }
 
-        $friends = Friend::where('user_id', \Auth::id())->get();
+        $friends = User::where( 'id', '<>', \Auth::id() )
+                    //->join('users', 'friends.friend_id', '=', 'users.id')
+                    ->get();
         
         return view('friends.index', compact('friends'));
     }
@@ -49,9 +52,9 @@ class FriendsController extends Controller
      */
     public function store(Request $request)
     {
-        Friend::create(request()->validate([
-            'friend_id' => ['required', 'exists:users,id'],
-            'user_id' => 'required'
+        Friends::create(request()->validate([
+            'friend_id' => ['required', 'exists:users,id', 'unique:friends,friend_id,NULL,id,user_id,'.\Auth::id()],
+            'user_id' => ['required']
         ]));
 
         return redirect('/friends');
@@ -60,10 +63,10 @@ class FriendsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Friend  $friend
+     * @param  \App\Friends  $friend
      * @return \Illuminate\Http\Response
      */
-    public function show(Friend $friend)
+    public function show(Friends $friend)
     {
         //
     }
@@ -71,10 +74,10 @@ class FriendsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Friend  $friend
+     * @param  \App\Friends  $friend
      * @return \Illuminate\Http\Response
      */
-    public function edit(Friend $friend)
+    public function edit(Friends $friend)
     {
         //
     }
@@ -83,10 +86,10 @@ class FriendsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Friend  $friend
+     * @param  \App\Friends  $friend
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Friend $friend)
+    public function update(Request $request, Friends $friend)
     {
         //
     }
@@ -94,10 +97,10 @@ class FriendsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Friend  $friend
+     * @param  \App\Friends  $friend
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Friend $friend)
+    public function destroy(Friends $friend)
     {
         //
     }

@@ -14,7 +14,7 @@ class CreateFriendsTable extends Migration
     public function up()
     {
         Schema::create('friends', function (Blueprint $table) {
-            $table->primary(['user_id', 'friend_id']);
+            $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('friend_id');
             $table->timestamps();
