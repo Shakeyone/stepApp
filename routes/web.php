@@ -38,3 +38,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('steps', 'StepsController');
 Route::resource('friends', 'FriendsController');
+
+Route::resources(
+    [
+        'import'       => 'ImportController',
+        
+    ]
+);
