@@ -4,29 +4,20 @@
 </div>
 <div class="col-6 offset-3">
     <select id="weekSelector" class="form-control mb-4">
-        <?php
-            // date_default_timezone_set("America/Chicago");
-            // $currentWeekNumber = date('W');
-            // $firstWeekMonth = date('W',strtotime('first day of ' . date('F Y')));
-            // for($i = $currentWeekNumber; $i >= $firstWeekMonth; $i--){
-            //     if ($i == $currentWeekNumber){
-            //         echo '<option value="0">Current Week</option>';
-            //     }elseif($i == $firstWeekMonth){
-            //         echo '<option value="' . $i . '">First Week of Month</option>';
-            //     }elseif ( $currentWeekNumber - $i == 1){
-            //         echo '<option value="' . $i . '">Last Week</option>';
-            //     }elseif ( $currentWeekNumber - $i == 2){
-            //         echo '<option value="' . $i . '">2 Weeks ago</option>';
-            //     }elseif ( $currentWeekNumber - $i == 3){
-            //         echo '<option value="' . $i . '">3 Weeks ago</option>';
-            //     }
-            // }
-        ?>
-        <option value="0">Current Week</option>
-        <option value="1">Last Week</option>
-        <option value="2">2 Weeks Ago</option>
-        <option value="3">3 Weeks Ago</option>
-        <option value="4">4 Weeks Ago</option>
+        @php
+            $currentWeek = date('W');
+            $label = array(
+                'Current Week',
+                'Last Week',
+                '2 Weeks Ago',
+                '3 Weeks Ago',
+                '4 Weeks Ago'
+            );
+        @endphp
+        @for ($i = 0; $i < 5; $i++)
+            <option value="{{ ( $currentWeek - $i ) }}">{{$label[$i]}}</option>            
+        @endfor
+
     </select>
 </div>
 <canvas id="myChart" class="col-11"></canvas>
@@ -46,15 +37,15 @@
             console.log('ajax data loading...');
         }).done(function( data ){
             console.log( data );
-            if(data.length == 0){
+            if(data['counts'].length == 0){
                 ctx.css('display','none');
                 $('#noResults p').html('There are no results to show');
             }else{
                 $('#noResults p').html('');
                 ctx.css('display','block');
-                for (var i = 0; i < data.length; i++){
-                    dataLabels.push(moment(data[i].stepTotalDate).format('MMMM D YYYY'));
-                    stepData.push(data[i].stepTotal);
+                for (var i = 0; i < data['counts'].length; i++){
+                    dataLabels.push(moment(data['counts'][i].stepTotalDate).format('MMMM D YYYY'));
+                    stepData.push(data['counts'][i].stepTotal);
                     }
                     myChart = new Chart(ctx, {
                     type: 'bar',
@@ -110,16 +101,16 @@
                 console.log( data );
                 dataLabels = new Array();
                 stepData = new Array(); 
-                console.log(data.length);         
-                if(data.length == 0){
+                console.log(data['counts'].length);         
+                if(data['counts'].length == 0){
                     ctx.css('display','none');
                     $('#noResults p').html('There are no results to show');
                 }else{
                     $('#noResults p').html('');
                     ctx.css('display','block');
-                    for (var i = 0; i < data.length; i++){
-                        dataLabels.push(moment(data[i].stepTotalDate).format('MMMM D YYYY'));
-                        stepData.push(data[i].stepTotal);
+                    for (var i = 0; i < data['counts'].length; i++){
+                        dataLabels.push(moment(data['counts'][i].stepTotalDate).format('MMMM D YYYY'));
+                        stepData.push(data['counts'][i].stepTotal);
                         }
                         myChart = new Chart(ctx, {
                         type: 'bar',
