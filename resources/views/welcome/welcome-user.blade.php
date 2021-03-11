@@ -5,23 +5,28 @@
 <div class="col-6 offset-3">
     <select id="weekSelector" class="form-control mb-4">
         <?php
-            date_default_timezone_set("America/Chicago");
-            $currentWeekNumber = date('W');
-            $firstWeekMonth = date('W',strtotime('first day of ' . date('F Y')));
-            for($i = $currentWeekNumber; $i >= $firstWeekMonth; $i--){
-                if ($i == $currentWeekNumber){
-                    echo '<option value="0">Current Week</option>';
-                }elseif($i == $firstWeekMonth){
-                    echo '<option value="' . $i . '">First Week of Month</option>';
-                }elseif ( $currentWeekNumber - $i == 1){
-                    echo '<option value="' . $i . '">Last Week</option>';
-                }elseif ( $currentWeekNumber - $i == 2){
-                    echo '<option value="' . $i . '">2 Weeks ago</option>';
-                }elseif ( $currentWeekNumber - $i == 3){
-                    echo '<option value="' . $i . '">3 Weeks ago</option>';
-                }
-            }
+            // date_default_timezone_set("America/Chicago");
+            // $currentWeekNumber = date('W');
+            // $firstWeekMonth = date('W',strtotime('first day of ' . date('F Y')));
+            // for($i = $currentWeekNumber; $i >= $firstWeekMonth; $i--){
+            //     if ($i == $currentWeekNumber){
+            //         echo '<option value="0">Current Week</option>';
+            //     }elseif($i == $firstWeekMonth){
+            //         echo '<option value="' . $i . '">First Week of Month</option>';
+            //     }elseif ( $currentWeekNumber - $i == 1){
+            //         echo '<option value="' . $i . '">Last Week</option>';
+            //     }elseif ( $currentWeekNumber - $i == 2){
+            //         echo '<option value="' . $i . '">2 Weeks ago</option>';
+            //     }elseif ( $currentWeekNumber - $i == 3){
+            //         echo '<option value="' . $i . '">3 Weeks ago</option>';
+            //     }
+            // }
         ?>
+        <option value="0">Current Week</option>
+        <option value="1">Last Week</option>
+        <option value="2">2 Weeks Ago</option>
+        <option value="3">3 Weeks Ago</option>
+        <option value="4">4 Weeks Ago</option>
     </select>
 </div>
 <canvas id="myChart" class="col-11"></canvas>
