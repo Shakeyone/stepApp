@@ -21,17 +21,41 @@ class WelcomeController extends Controller
         }else{
             $weekDateRange = $this->getWeekStartAndEndDates();
         }
+
+        // return $weekDateRange['week_start'];
+
+        $daysInWeek = array();
+        $dto = new \DateTime();
+        $firstDay = $dto->createFromFormat('Y-m-d', $weekDateRange['week_start']);
+
+
+        for( $i = 0; $i < 7; $i++){
+            $daysInWeek[] = ($i == 0) ? $firstDay->format('Y-m-d') : $firstDay->modify('+1 days')->format('Y-m-d');
+        }
         
-        $last7dayTotals4User['counts'] = DB::table('users')
+        $last7dayTotals4User = DB::table('users')
                                 ->join('steps', 'users.id', '=', 'steps.user_id')
                                 ->select('users.name', 'steps.stepTotalDate', 'steps.stepTotal' )
                                 ->where('steps.user_id', '=', \Auth::id())
                                 ->whereBetween('steps.stepTotalDate', [$weekDateRange['week_start'], $weekDateRange['week_end']])
                                 ->orderBy('steps.stepTotalDate', 'asc')
                                 ->take(7)
-                                ->get()
-                                ->toArray();
-        return array_merge($last7dayTotals4User,$weekDateRange);
+                                ->get();
+
+                                // return var_dump($last7dayTotals4User);
+
+        foreach( $daysInWeek as $day){
+
+            if( !$last7dayTotals4User->contains('stepTotalDate', $day)){
+                $last7dayTotals4User->push([
+                    'name' => auth()->user()->name,
+                    'stepTotalDate' => $day,
+                    'stepTotal' => 0    
+                ]);
+            }
+        }
+
+        return $last7dayTotals4User->sortBy('stepTotalDate')->values()->all();
     }
 
     private function getWeekStartAndEndDates( $week = NULL, $year = NULL ) {
