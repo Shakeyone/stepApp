@@ -43,7 +43,7 @@
     function createChart( chartData ){
         var ctx = $('#myChart');
         if(myChart != undefined) myChart.destroy();
-        let labels = chartData.map(a => a.stepTotalDate);
+        let labels = chartData.map(a => moment(a.stepTotalDate).format('MMM D, YYYY'));
         let stepTotals = chartData.map(a => a.stepTotal);
 
         var myChart = new Chart(ctx, {
